@@ -5,85 +5,82 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Página de Cadastro</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #dab3e9;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-        }
-        .container {
-            background: #ab97d1;
-            padding: 15px;
-            border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            width: 300px;
-            height: 650px; 
-        }
-    
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #dab3e9;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+    }
+    .container {
+        background: #ab97d1;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        width: 300px;
+    }
     .container1 {
         background:  #ab97d1;
         display: flex;
         padding: 20px;
         border-radius: 8px;
         box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        height: 82%;
+        height: 66%;
         float: left;
         left: 50px;
-        width: 210px;
+        width: 200px;
         
     }
-        h2 {
-            text-align: center;
-            margin-bottom: 20px;
-        }
-        form {
-            display: flex;
-            flex-direction: column;
-        }
-        label {
-            margin-bottom: 5px;
-            font-weight: bold;
-        }
-        input {
-            margin-bottom: 15px;
-            padding: 10px;
-            border: 1px solid #414c87;
-            border-radius: 4px;
-        }
-        button {
-            background-color: #a879c7;
-            color: white(26, 19, 214);
-            border: none;
-            padding: 10px;
-            border-radius: 4px;
-            cursor: pointer;
-            transition: background-color 0.3s;
-        }
-        button:hover {
-            background-color: #ca45c4;
-        }
-    </style>
+    h2 {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+    form {
+        display: flex;
+        flex-direction: column;
+    }
+    label {
+        margin-bottom: 5px;
+        font-weight: bold;
+    }
+    input {
+        margin-bottom: 15px;
+        padding: 10px;
+        border: 1px solid #414c87;
+        border-radius: 4px;
+    }
+    button {
+        background-color: #a879c7;
+        color: white(26, 19, 214);
+        border: none;
+        padding: 10px;
+        border-radius: 4px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+    }
+    button:hover {
+        background-color: #ca45c4;
+    }
+</style>
+
 
 
 </head>
 <body>
 
 
+
 <script>
-    function exibirConfirmacao(event) {
-        event.preventDefault();
-        document.getElementById('confirmation').style.display = 'block';
-    }
+function exibirConfirmacao(event) {
+    event.preventDefault(); // Impede o envio do formulário
+    document.getElementById('confirmation').style.display = 'block';
+}
 </script>
 
-
     <div class="container">
-        <h2>Cadastro Bibliotecário </h2>
-
-        
+        <h2>Cadastro Aluno </h2>
 
         <form action="validacadastro.php" method="post">
             <label for="nome">Nome:</label>
@@ -140,7 +137,6 @@
         });
     </script>
 
-
             <label for="email">E-mail:</label>
             <input type="email" id="email" name="email" required>
 
@@ -150,16 +146,11 @@
             <label for="confirmaSenha">Confirme sua senha:</label>
             <input type="password" id="confirmaSenha" name="confirmaSenha" required>
 
-            <label for="codigo">Codigo da escola</label>
-            <input type="password" id="codigo" name="codigo" required>
-
-           
-        </form>
-    </div>
-
-        <div class="container1">
+</form>
+</div>
+        
+    <div class="container1">
         <form action= "validacadastro.php" method="post">
-            <br><br><br>
             <label for="endereco">CEP:</label>
             <input type="text" id="cep" name="cep" required>
             <label for="endereco">BAIRRO:</label>
@@ -170,12 +161,10 @@
             <input type="text" id="cep" name="cep" required>
             <label for="endereco">COMPLEMENTO:</label>
             <input type="text" id="cep" name="cep" required>
-            <br>
-            
 
             <button type="submit">Cadastrar</button><br>
 
-            <form method="post" action="cad2.php">
+            <form method="post" action="cad1.php">
 <INPUT type="hidden" name="cadastro"/>
 <button type="submit">Editar</button><br>
 
@@ -191,18 +180,9 @@
    
 
 
-</form>
-
-    </body>
- </html>
-
-
-
-
-        </div>
-    </div>
 </body>
 </html>
 
 
 
+    
