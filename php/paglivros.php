@@ -1,18 +1,100 @@
 <!DOCTYPE html>
-<html>
-<head lang="en">
-    <meta charset="UTF-8">
-    <title>Armazenando imagens no banco de dados Mysql</title>
-</head>
-<body>
-<h2>Selecione um novo arquivo de imagem</h2>
 
-<form enctype="multipart/form-data" action="upload.php" method="post">
-<div><input name="nome_evento" type="text"/></div>
-<div><input name="descricao_evento" type="textarea"/></div>
+<head>
+<title>Cadastro</title>
+<meta charset="utf-8">
+<style>
+      
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #dab3e9;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+    }
+    .container {
+        background: #ab97d1;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        width: 550px;
+    }
+   
+    input {
+        margin-bottom: 15px;
+        padding: 10px;
+        border: 1px solid #414c87;
+        border-radius: 4px;
+    }
+    button {
+        background-color: #a879c7;
+        color: white(26, 19, 214);
+        border: none;
+        padding: 10px;
+        border-radius: 4px;
+        cursor: pointer;
+        width: 300px;
+        transition: background-color 0.3s;
+    }
+    button:hover {
+        background-color: #ca45c4;
+    }
+</style>
+</head>
+
+<body>
+
+
+
+<center>
+<div class="container">
+<h2>Adicionar Livros </h2>
+
+<form method="post" action="concad1.php">
+<form id="cpfForm" action="../php/con">
+
+<label for="name"> NOME: </label>
+<input type="text" id="name" name="name" size="50" maxlength="50" /> <br>
+
+<label for="email">Autor: </label>
+<input type="autor" id="autor" name="autor" size="50" maxlength="50" /><br>
+
+<label for="email">idioma: </label>
+<input type="" id="idioma" name="idioma" size="50" maxlength="50" /><br>
+
+<label for="email">Unidade: </label>
+<input type="" id="unidade" name="unidade" size="50" maxlength="50" /><br>
+
+<label for="email">Descrisçao: </label>
+<input type="" id="dscricsao" name="descriscao" size="50" maxlength="50" /><br>
+
 <input type="hidden" name="MAX_FILE_SIZE" value="99999999"/>
     <div><input name="imagem" type="file"/></div>
-    <div><input type="submit" value="Salvar"/></div>
+
+<button type="submit">Adicionar</button><br>
+
+<br>
+
+<form method="post" action="altera.php">
+<button type="submit">Alterar</button><br>
+</form><br>
+
 </form>
+    </center>
+
+
+
+    <?php
+if(isset($_GET['log']) && $_GET['log'] == 'erro')
+{
+	echo "Email inválido!";
+	unset($_GET['log']);
+    // sleep(5);
+	header("Refresh: 1; url=aluno.php");
+}
+?>
 </body>
+
 </html>
