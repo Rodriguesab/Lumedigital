@@ -44,7 +44,6 @@
 </style>
 </head>
 
-
 <body>
 
 
@@ -58,6 +57,7 @@
 
 
 <form method="post" action="concad1.php">
+<form id="cpfForm" action="../php/con">
 
 <label for="name"> NOME: </label>
 <input type="text" id="name" name="name" size="50" maxlength="50" /> <br>
@@ -69,7 +69,8 @@
 <input type="date" id="birth" name="birth" size="10" maxlength="10"  /><br>
 
 <label for="cpf">CPF</label>
-<input type="text" id="cpf" name="cpf" size="10" maxlength="10"  /> 
+<input class="conteudo" type="text" id="cpf" name="cpf" pattern="\d{3}\.\d{3}\.\d{3}\-\d{2}"
+maxlength="14" placeholder="Insira seu CPF" id="cpf" required>
 
 
 <script>

@@ -114,11 +114,11 @@
   <center>
   <?php
       $servername = "localhost";
-      $username = "lumedigital";
+      $username = "root";
       $password = "biblio";
       $dbname = "livros";
 
-      $conn= new mysqli("localhost", "lumedigital", "biblio", "livros");
+      $conn= new mysqli("localhost", "root", "biblio", "livros");
 
 
       if ($conn->connect_error) {
