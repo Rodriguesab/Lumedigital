@@ -52,7 +52,6 @@
 <div class="container">
 <h2>Adicionar Livros </h2>
 
-<form method="post" action="concad1.php">
 <form id="cpfForm" action="../php/con">
 
 <label for="name"> NOME: </label>
@@ -84,17 +83,6 @@
 </form>
     </center>
 
-
-
-    <?php
-if(isset($_GET['log']) && $_GET['log'] == 'erro')
-{
-	echo "Email inválido!";
-	unset($_GET['log']);
-    // sleep(5);
-	header("Refresh: 1; url=aluno.php");
-}
-?>
 </body>
 
 </html>
