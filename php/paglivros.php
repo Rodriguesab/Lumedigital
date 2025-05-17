@@ -47,14 +47,13 @@
 <body>
 
 
-
 <center>
 <div class="container">
 <h2>Adicionar Livros </h2>
 
 <form id="cpfForm" action="../php/con">
 
-<label for="name"> NOME: </label>
+<label for="name"> Nome: </label>
 <input type="text" id="name" name="name" size="50" maxlength="50" /> <br>
 
 <label for="email">Autor: </label>
@@ -83,6 +82,70 @@
 </form>
     </center>
 
+       
+<?php
+session_start();
+
+// primeiro testamos se o usuário está autenticado.
+if (!isset($_SESSION['autenticado']) || $_SESSION['autenticado'] != 'SIM')
+{
+	header('Location: login_f.php');
+}
+// abaixo, estamos excluindo a foto, caso o usuario já tenha alterado antes, para dar lugar à nova foto
+if (isset($_SESSION['foto_atual']) && $_SESSION['foto_atual'] != 'logo.jpg')
+{
+  $arq_atual = $_SESSION['foto_atual'];
+		unlink($arq_atual);
+}
+
+if(!isset($_POST['foto']))
+{
+HEADER('Location:editar_usuario_f.php?log=erro5');   // erro de não envio do arquivo
+
+}
+
+|| filesize($_FILES['foto'] < 1))  // se não existe a foto ou se o arquivo está vazio, menor que 1 byte. */
+if($_FILES['foto']['size'] < 1)
+{
+HEADER('Location:editar_usuario_f.php?log=erro5');      // erro de Arquivo inválido
+}
+
+If($extensao != 'jpg' && $extensao != 'jpeg' && $extensao != 'png' && $extensao != 'gif') // se não for arquivo de imagem.
+{
+HEADER('Location:editar_usuario_f.php?log=erro6');  // erro de tipo de arquivo inválido
+}
+
+$from = $_FILES["foto"]["tmp_name"]; // variavel recebendo a localização temporária do arquivo após o post.
+
+if(!move_uploaded_file($from, $to))  // se não foi possível fazer o upload...
+{         
+   HEADER('Location:editar_usuario_f.php?log=erro7');  // erro no envio do arquivo
+}
+
+// $novo_nome = rename("$to", "foto." . $extensao); // renomear o nome do arquivo, mantendo a extensão
+
+$abc = mysqli_connect('localhost', 'root', NULL, 'db_login')
+or die ('Erro ao se conectar ao banco de dados');
+
+	$result = mysqli_query($abc, $alterar);
+
+if(!$result)
+	{
+		HEADER('Location:editar_usuario_f.php?log=erro8');
+	}
+mysqli_close($abc);
+
+$_SESSION['foto_atual'] = $to;
+$_SESSION['foto_alterada'] = $to;
+
+HEADER('Location:editar_usuario_f.php');
+
+// unlink('foto.
+?>
+
+
+
+ 
 </body>
 
 </html>
