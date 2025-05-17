@@ -9,14 +9,14 @@
 
     <?php
 
-$nome = $_POST['name'] ?? '';
-$autor = $_POST['autor'] ?? '';
-$idioma = $_POST['idioma'] ?? '';
-$unidade = $_POST['unidade'] ?? '';
-$descriscao = $_POST['descriscao'] ?? '';
+$nome = $_POST['name'];
+$autor = $_POST['autor'];
+$idioma = $_POST['idioma'];
+$unidade = $_POST['unidade'];
+$descriscao = $_POST['descriscao'];
 
-$imagem = $_FILES['imagem']['name'];
-$imagemTmp = $_FILES['imagem']['tmp_name'];
+$imagem = $_FILES['imagem']['planilha1'];
+$imagemTmp = $_FILES['imagem']['tmp_planilha1'];
 $destino = "../uploads/" . basename($imagem);
 
 
@@ -32,16 +32,17 @@ $destino = "../uploads/" . basename($imagem);
 $abc = mysqli_connect('localhost', 'root', NULL, 'planilha1')
 or die ('Erro ao se conectar ao banco de dados');
 
-$insere =  "INSERT INTO planilha1(nome, autor, idioma, unidade, descrição,) 
-VALUES ('$name','$autor','$idioma','$unidade','$descriçao','$imagem')";
+$insere =  "INSERT INTO planilha1(nome, autor, idioma, unidade, imagem) 
+VALUES ('$name','$autor','$idioma','$unidade','$imagem')";
 
 mysqli_query($abc, $insere);
 
+session_start();
 
-    // primeiro testamos se o usuário está autenticado.
+// primeiro testamos se o usuário está autenticado.
 if (!isset($_SESSION['autenticado']) || $_SESSION['autenticado'] != 'SIM')
 {
-	header('Location: login_f.php');
+	header('Location: pag.php');
 }
 
 // abaixo, estamos excluindo a foto, caso o usuario já tenha alterado antes, para dar lugar à nova foto
@@ -50,6 +51,8 @@ if (isset($_SESSION['foto_atual']) && $_SESSION['foto_atual'] != 'logo.jpg')
   $arq_atual = $_SESSION['foto_atual'];
 		unlink($arq_atual);
 }
+
+
  
 if(!isset($_POST['foto']))
 {
@@ -57,7 +60,9 @@ HEADER('Location:editar_usuario_f.php?log=erro5');   // erro de não envio do ar
 
 }
 
-|| filesize($_FILES['foto'] < 1) // se não existe a foto ou se o arquivo está vazio, menor que 1 byte. */
+
+/*if(!is_file($_FILES['foto'])
+|| filesize($_FILES['foto'] < 1))  // se não existe a foto ou se o arquivo está vazio, menor que 1 byte. */
 if($_FILES['foto']['size'] < 1)
 {
 HEADER('Location:editar_usuario_f.php?log=erro5');      // erro de Arquivo inválido
@@ -72,6 +77,15 @@ If($extensao != 'jpg' && $extensao != 'jpeg' && $extensao != 'png' && $extensao 
 HEADER('Location:editar_usuario_f.php?log=erro6');  // erro de tipo de arquivo inválido
 
 }
+
+if(strlen($nomedoarquivo) > 10) // se o nome do arquivo tiver mais de 10 caracteres
+{
+$arq_reduzido = substr($nomedoarquivo, -10, 10);  // reduzir o tambanho de arquivo
+}
+else
+{
+	$arq_reduzido = $nomedoarquivo;
+}
 /* abaixo, usamos str_replace paara eliminar espaços em branco no inicio, no meio e no fim do nome do arquivo,
    caso houver. Usamos, para isso, a função str_replace */
 $to = str_replace(' ', '', $arq_reduzido);
@@ -85,10 +99,14 @@ if(!move_uploaded_file($from, $to))  // se não foi possível fazer o upload...
 {         
    HEADER('Location:editar_usuario_f.php?log=erro7');  // erro no envio do arquivo
 }
+
 // $novo_nome = rename("$to", "foto." . $extensao); // renomear o nome do arquivo, mantendo a extensão
+
+$usuario = $_SESSION['lembra_usu']; // variavel recebendo o email do usuario
 
 $abc = mysqli_connect('localhost', 'root', NULL, 'planilha1')
 or die ('Erro ao se conectar ao banco de dados');
+
 
 $alterar = "UPDATE tb_usuario SET FOTO = '$to' WHERE CAMPO_USUARIO = '$usuario'";
 
@@ -106,7 +124,6 @@ $_SESSION['foto_alterada'] = $to;
 HEADER('Location:editar_usuario_f.php');
 
 // unlink('foto.
-
 ?>
 
 </body>

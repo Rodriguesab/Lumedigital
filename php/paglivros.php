@@ -57,22 +57,23 @@
 <label for="name"> Nome: </label>
 <input type="text" id="name" name="name" size="50" maxlength="50" /> <br>
 
-<label for="email">Autor: </label>
+<label for="autor">Autor: </label>
 <input type="autor" id="autor" name="autor" size="50" maxlength="50" /><br>
 
-<label for="email">Unimade: </label>
+<label for="unidade">Unimade: </label>
 <input type="" id="idioma" name="idioma" size="50" maxlength="50" /><br>
 
-<label for="email">Linguas: </label>
+<label for="linguas">Linguas: </label>
 <input type="" id="unidade" name="unidade" size="50" maxlength="50" /><br>
 
-<label for="email">Descrisçao: </label>
+<label for="descrisçao">Descrisçao: </label>
 <input type="" id="dscricsao" name="descriscao" size="50" maxlength="50" /><br>
 
+<label for= "Imagem">Imagem</label>
 <input type="hidden" name="MAX_FILE_SIZE" value="99999999"/>
     <div><input name="imagem" type="file"/></div>
 
-<button type="submit">Adicionar</button><br>
+<button type="submit">Adicionar</button><br>             
 
 <br>
 </form><br>
