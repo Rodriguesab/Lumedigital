@@ -16,10 +16,10 @@
     }
     .container {
         background: #ab97d1;
-        padding: 20px;
+        padding: 01px;
         border-radius: 8px;
         box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        width: 550px;
+        width: 500px;
     }
    
     input {
@@ -32,10 +32,10 @@
         background-color: #a879c7;
         color: white(26, 19, 214);
         border: none;
-        padding: 10px;
+        padding: 09px;
         border-radius: 4px;
         cursor: pointer;
-        width: 300px;
+        width: 400px;
         transition: background-color 0.3s;
     }
     button:hover {
@@ -48,7 +48,7 @@
 
 
 <center>
-    
+
 <div class="container">
 <h2>Adicionar Livros </h2>
 
