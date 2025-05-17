@@ -60,10 +60,10 @@
 <label for="email">Autor: </label>
 <input type="autor" id="autor" name="autor" size="50" maxlength="50" /><br>
 
-<label for="email">idioma: </label>
+<label for="email">Unimade: </label>
 <input type="" id="idioma" name="idioma" size="50" maxlength="50" /><br>
 
-<label for="email">Unidade: </label>
+<label for="email">Linguas: </label>
 <input type="" id="unidade" name="unidade" size="50" maxlength="50" /><br>
 
 <label for="email">Descrisçao: </label>

@@ -22,8 +22,8 @@ $destino = "../uploads/" . basename($imagem);
 
     echo "Nome: $nome <br/>";
     echo "Autor:$autor <br/>";
-    echo "Idioma: $idioma <br/>";
-    echo "Unidade: $unidade <br/>";
+    echo "Unidade: $idioma <br/>";
+    echo "Linguas: $unidade <br/>";
     echo "Descrição: $descriscao <br/>";
 
     echo "Imagem enviada com sucesso!";
