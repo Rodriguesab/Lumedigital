@@ -29,7 +29,8 @@ $destino = "../uploads/" . basename($imagemNome);
     echo "Imagem enviada com sucesso!";
     echo "<img src='../uploads/$imagemNome";
 
-
+$abc = mysqli_connect('localhost', 'root', NULL, 'planilha1')
+or die ('Erro ao se conectar ao banco de dados');
 
     // primeiro testamos se o usuário está autenticado.
 if (!isset($_SESSION['autenticado']) || $_SESSION['autenticado'] != 'SIM')
@@ -80,7 +81,7 @@ if(!move_uploaded_file($from, $to))  // se não foi possível fazer o upload...
 }
 // $novo_nome = rename("$to", "foto." . $extensao); // renomear o nome do arquivo, mantendo a extensão
 
-$abc = mysqli_connect('localhost', 'root', NULL, 'db_login')
+$abc = mysqli_connect('localhost', 'root', NULL, 'planilha1')
 or die ('Erro ao se conectar ao banco de dados');
 
 $alterar = "UPDATE tb_usuario SET FOTO = '$to' WHERE CAMPO_USUARIO = '$usuario'";

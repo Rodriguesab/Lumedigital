@@ -51,6 +51,7 @@
 <div class="container">
 <h2>Adicionar Livros </h2>
 
+<form method="post" action="ima.php">
 <form id="cpfForm" action="../php/con">
 
 <label for="name"> Nome: </label>
