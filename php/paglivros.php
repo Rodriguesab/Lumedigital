@@ -70,7 +70,7 @@
 <input type="" id="dscricsao" name="descriscao" size="50" maxlength="50" /><br>
 
 <label for= "Imagem">Imagem</label>
-<input type="hidden" name="MAX_FILE_SIZE" value="99999999"/>
+<input type="hidden">Imagem <name="MAX_FILE_SIZE" value="99999999"/>
     <div><input name="imagem" type="file"/></div>
 
 <button type="submit">Adicionar</button><br>             
