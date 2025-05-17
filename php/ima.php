@@ -15,9 +15,9 @@ $idioma = $_POST['idioma'] ?? '';
 $unidade = $_POST['unidade'] ?? '';
 $descriscao = $_POST['descriscao'] ?? '';
 
-$imagemNome = $_FILES['imagem']['name'];
+$imagem = $_FILES['imagem']['name'];
 $imagemTmp = $_FILES['imagem']['tmp_name'];
-$destino = "../uploads/" . basename($imagemNome);
+$destino = "../uploads/" . basename($imagem);
 
 
     echo "Nome: $nome <br/>";
@@ -31,6 +31,12 @@ $destino = "../uploads/" . basename($imagemNome);
 
 $abc = mysqli_connect('localhost', 'root', NULL, 'planilha1')
 or die ('Erro ao se conectar ao banco de dados');
+
+$insere =  "INSERT INTO planilha1(nome, autor, idioma, unidade, descrição,) 
+VALUES ('$name','$autor','$idioma','$unidade','$descriçao','$imagem')";
+
+mysqli_query($abc, $insere);
+
 
     // primeiro testamos se o usuário está autenticado.
 if (!isset($_SESSION['autenticado']) || $_SESSION['autenticado'] != 'SIM')
