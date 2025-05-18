@@ -54,11 +54,11 @@ echo "Seu comentario sobre voce: $area <br/> <br/> <br/>";
 
 
 
-$abc = mysqli_connect('localhost', 'root', NULL, 'cadastro')
+$abc = mysqli_connect('localhost', 'root', NULL, 'cad11')
 or die ('Erro ao se conectar ao banco de dados');
 
 
-$insere =  "INSERT INTO tb_cadastro(nome, email, data_nasc, cpf, tel, 
+$insere =  "INSERT INTO cad11(nome, email, data_nasc, cpf, tel, 
 senha,comentario) VALUES ('$name','$email','$date_birth','$cpf','$s_phone','$senha','$codigo','$area')";
 
 mysqli_query($abc, $insere);
