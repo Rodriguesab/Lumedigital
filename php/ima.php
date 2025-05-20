@@ -16,17 +16,15 @@ if (isset($_FILES['imagem']) && $_FILES['imagem']['error'] == 0) {
         exit();
     }
 
-    // Diretório de destino
     $uploadDir = "../uploads/";
 
-    // Cria a pasta se ela não existir
+    // Cria a pasta uploads se não existir
     if (!is_dir($uploadDir)) {
         mkdir($uploadDir, 0777, true);
     }
 
     $destino = $uploadDir . basename($imagemNome);
 
-    // Move o arquivo
     if (move_uploaded_file($imagemTmp, $destino)) {
         echo "Imagem enviada com sucesso!<br>";
         echo "<img src='$destino' width='150'><br>";
@@ -37,28 +35,32 @@ if (isset($_FILES['imagem']) && $_FILES['imagem']['error'] == 0) {
     die("Erro: Nenhuma imagem enviada ou erro no upload.");
 }
 
-// Exibe os dados
 echo "Nome: $nome <br/>";
 echo "Autor: $autor <br/>";
 echo "Unidade: $unidade <br/>";
 echo "Idiomas: $idioma <br/>";
 echo "Descrição: $descricao <br/>";
 
-// Conexão com banco de dados
-$con = mysqli_connect('localhost', 'root', '', 'planilha1') or die('Erro ao se conectar ao banco de dados');
+// Conexão PDO
+try {
+    $pdo = new PDO('mysql:host=localhost;dbname=planilha1;charset=utf8', 'root', '');
+    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-$sql = "INSERT INTO planilha1 (nome, autor, idioma, unidade, descricao, imagem) VALUES (?, ?, ?, ?, ?, ?)";
-$stmt = mysqli_prepare($con, $sql);
-mysqli_stmt_bind_param($stmt, 'ssssss', $nome, $autor, $idioma, $unidade, $descricao, $imagemNome);
-mysqli_stmt_execute($stmt);
+    // Preparar e executar insert
+    $sql = "INSERT INTO planilha1 (nome, autor, idioma, unidade, descricao, imagem) VALUES (:nome, :autor, :idioma, :unidade, :descricao, :imagem)";
+    $stmt = $pdo->prepare($sql);
+    $stmt->execute([
+        ':nome' => $nome,
+        ':autor' => $autor,
+        ':idioma' => $idioma,
+        ':unidade' => $unidade,
+        ':descricao' => $descricao,
+        ':imagem' => $imagemNome,
+    ]);
 
-// Verifica o resultado
-if (mysqli_stmt_affected_rows($stmt) > 0) {
     echo "Livro cadastrado com sucesso!";
-} else {
-    echo "Erro ao cadastrar o livro.";
+} catch (PDOException $e) {
+    echo "Erro ao cadastrar o livro: " . $e->getMessage();
 }
-
-mysqli_stmt_close($stmt);
-mysqli_close($con);
 ?>
+R
