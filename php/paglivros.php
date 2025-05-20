@@ -67,9 +67,13 @@
 
 <label for="descrisçao">Descrisçao: </label>
 <input type="" id="dscricsao" name="descriscao" size="50" maxlength="50" /><br>
+</form>
 
-<input type="hidden" name="MAX_FILE_SIZE" value="99999999"/>
-    <div><input name="imagem" type="file"/></div>
+<form method="post" action="ima.php" enctype="multipart/form-data">
+    <!-- seus inputs aqui -->
+    <input type="file" name="imagem" required>
+  
+
 
 <button type="submit">Adicionar</button><br>             
 

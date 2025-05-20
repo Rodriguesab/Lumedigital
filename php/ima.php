@@ -16,8 +16,17 @@ if (isset($_FILES['imagem']) && $_FILES['imagem']['error'] == 0) {
         exit();
     }
 
-    $destino = "../uploads/" . basename($imagemNome);
+    // Diretório de destino
+    $uploadDir = "../uploads/";
 
+    // Cria a pasta se ela não existir
+    if (!is_dir($uploadDir)) {
+        mkdir($uploadDir, 0777, true);
+    }
+
+    $destino = $uploadDir . basename($imagemNome);
+
+    // Move o arquivo
     if (move_uploaded_file($imagemTmp, $destino)) {
         echo "Imagem enviada com sucesso!<br>";
         echo "<img src='$destino' width='150'><br>";
